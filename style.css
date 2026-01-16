@@ -291,14 +291,17 @@ body {
 
 /* Footer Style */
 #footer {
-    display: none;
     position: fixed;
     bottom: 20px;
     width: 100%;
     text-align: center;
     color: white;
     font-family: sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     opacity: 0.8;
     pointer-events: none;
+    line-height: 1.5;
+}
+#footer p {
+    margin: 5px 0;
 }
