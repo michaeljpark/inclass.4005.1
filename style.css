@@ -292,15 +292,16 @@ body {
 /* Footer Style */
 #footer {
     position: fixed;
-    bottom: 20px;
+    bottom: 40px;
     width: 100%;
     text-align: center;
-    color: white;
+    color: #000;
     font-family: sans-serif;
-    font-size: 1rem;
-    opacity: 0.8;
+    font-size: 0.9rem;
+    font-weight: normal;
     pointer-events: none;
     line-height: 1.5;
+    z-index: 999;
 }
 #footer p {
     margin: 5px 0;
