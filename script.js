@@ -61,6 +61,11 @@ function renderCircles(data) {
         if (item.category) {
             circle.dataset.category = item.category;
         }
+
+        // Hide visual elements if label is empty
+        if (!item.label) {
+            circle.classList.add('empty-slot');
+        }
         
         // 텍스트 라벨 생성
         const label = document.createElement('div');
