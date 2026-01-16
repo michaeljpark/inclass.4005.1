@@ -179,6 +179,16 @@ body {
     transition: all 0.3s ease;
 }
 
+.circle.empty-slot {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    cursor: default;
+}
+.circle.empty-slot::before, .circle.empty-slot::after {
+    display: none !important;
+}
+
 #btn-deactivate-all {
     width: 100%;
     background-color: #e74c3c;
