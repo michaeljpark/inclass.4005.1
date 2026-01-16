@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222; /* 어두운 배경으로 스크린 강조 */
+    overflow: hidden;
+}
+
+#screen {
+    background-color: white;
+    aspect-ratio: 16 / 9;
+    
+    /* 화면 크기에 맞춰 가변적으로 조절 */
+    width: 90vw;
+    max-height: 90vh;
+    
+    /* 16:9 비율 유지를 위한 미디어 쿼리 보정 */
+    @media (min-aspect-ratio: 16/9) {
+        height: 90vh;
+        width: 160vh; /* 90 * 16/9 */
+    }
+    
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 가로 6개 */
+    grid-template-rows: repeat(4, 1fr);    /* 세로 4개 = 총 24개 */
+    gap: 15px;
+    padding: 30px;
+    box-sizing: border-box;
+    /* justify-items: center; align-items: center; 제거 - 개별 아이템에서 제어 */
+}
+
+/* 각 원과 텍스트를 감싸는 컨테이너 */
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.circle {
+    width: 100%;
+    max-width: 80px; /* 텍스트 공간 확보를 위해 원 크기 약간 조정 */
+    aspect-ratio: 1 / 1;
+    background-color: white; /* 배경색을 흰색으로 변경 */
+    border: 3px solid #3498db; /* 파란색 테두리 */
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative; /* 내부 채움을 위한 포지셔닝 */
+    overflow: hidden; /* 내부 채움이 원을 넘치지 않게 */
+    transition: all 0.3s ease;
+}
+
+/* Hover Glow Effect */
+.grid-item:hover .circle {
+    box-shadow: 0 0 15px #3498db, 0 0 25px rgba(52, 152, 219, 0.4);
+    transform: scale(1.05);
+    border-color: #2980b9;
+    cursor: pointer;
+}
+
+.circle-label {
+    margin-top: 8px;
+    color: #333;
+    font-size: 0.75rem; /* 텍스트 크기 작게 */
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    word-break: break-word; /* 긴 단어 줄바꿈 */
+    max-width: 100%;
+}
+
+/* 레벨에 따른 내부 채움 구현 */
+.circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+    border-radius: 50%;
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+    animation: pulse 2s infinite ease-in-out; /* 펄스 애니메이션 추가 */
+}
+
+/* 펄스 애니메이션 정의 */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.95);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0.95);
+        opacity: 0.9;
+    }
+}
+
+/* Level 1: 거의 비어있음 (아주 작은 점이나 빈 상태) */
+.circle[data-level="1"]::after {
+    width: 0%;
+    height: 0%;
+    background-color: transparent;
+}
+
+/* Level 2: 소형 채움 (연한 파랑) */
+.circle[data-level="2"]::after {
+    width: 40%;
+    height: 40%;
+    background-color: #aed6f1;
+}
+
+/* Level 3: 중형 채움 (중간 파랑) */
+.circle[data-level="3"]::after {
+    width: 70%;
+    height: 70%;
+    background-color: #5dade2;
+}
+
+/* Level 4: 대형 채움 (진한 파랑) */
+.circle[data-level="4"]::after {
+    width: 100%;
+    height: 100%;
+    background-color: #3498db;
+}
+
+/* Footer Style */
+#footer {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    opacity: 0.8;
+    pointer-events: none;
+}
