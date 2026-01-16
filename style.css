@@ -11,6 +11,32 @@ body {
     overflow: hidden;
 }
 
+#btn-screenshot {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    font-family: inherit;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+#btn-screenshot:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+}
+
+#btn-screenshot:active {
+    transform: translateY(0);
+}
+
 #controls-container {
     position: fixed;
     top: 20px;

@@ -296,6 +296,23 @@ function randomizeCompetencies() {
 // Event Listeners for Controls
 document.getElementById('btn-randomize').addEventListener('click', randomizeCompetencies);
 
+// Screenshot Logic
+document.getElementById('btn-screenshot').addEventListener('click', () => {
+    const screenElement = document.getElementById('screen');
+    
+    // Use html2canvas to capture the element
+    html2canvas(screenElement, {
+        backgroundColor: '#ffffff', // Ensure white background if transparent
+        scale: 2 // Higher scale for better quality
+    }).then(canvas => {
+        // Create an image link
+        const link = document.createElement('a');
+        link.download = 'exercise.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    });
+});
+
 // Initial Setup
 generateControlPanel();
 randomizeCompetencies();
